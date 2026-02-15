@@ -1,0 +1,10 @@
+[
+    {
+        "os": "Linux",
+        "payload": "test;id"
+    },
+    {
+        "os": "Windows",
+        "payload": "test & whoami"
+    }
+]
