@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "type": "Error-Based SQL Injection",
+    "database": "MySQL",
+    "payload_template": "' OR 1=1 --",
+    "how_it_works": "The payload alters the SQL logic, forcing the condition to always be true and exposing query behavior or errors.",
+    "why_filters_fail": "Weak filters rely on blacklists instead of parameterized queries.",
+    "defensive_note": "Use prepared statements and input validation."
+  },
+  {
+    "id": 2,
+    "type": "Union-Based SQL Injection",
+    "database": "Generic",
+    "payload_template": "' UNION SELECT NULL, NULL --",
+    "how_it_works": "The UNION operator combines attacker-controlled queries with the original query to extract additional data.",
+    "why_filters_fail": "Improper handling of SQL keywords and column matching.",
+    "defensive_note": "Restrict database permissions and use parameterized queries."
+  },
+  {
+    "id": 3,
+    "type": "Blind SQL Injection",
+    "database": "Generic",
+    "payload_template": "' AND 1=1 --",
+    "how_it_works": "No direct output is returned. Attacker infers information based on application behavior.",
+    "why_filters_fail": "Lack of proper query parameterization.",
+    "defensive_note": "Disable detailed error messages and enforce secure query handling."
+  }
+]
