@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "type": "Reflected XSS",
+    "context": "HTML",
+    "payload_template": "<script>alert(1)</script>",
+    "how_it_works": "User input is reflected directly into the HTML response without encoding. The browser interprets the script tag and executes JavaScript.",
+    "why_filters_fail": "Simple filters may only check for keywords and ignore context.",
+    "defensive_note": "Use output encoding and context-aware escaping."
+  },
+  {
+    "id": 2,
+    "type": "Stored XSS",
+    "context": "HTML Attribute",
+    "payload_template": "\" onmouseover=\"alert(1)",
+    "how_it_works": "The payload breaks out of an HTML attribute and injects an event handler that executes JavaScript when triggered.",
+    "why_filters_fail": "Filters may not properly sanitize attribute contexts.",
+    "defensive_note": "Validate input and encode attributes properly."
+  },
+  {
+    "id": 3,
+    "type": "DOM-Based XSS",
+    "context": "JavaScript",
+    "payload_template": "';alert(1);//",
+    "how_it_works": "Client-side JavaScript inserts untrusted input into a script context, allowing injected code execution.",
+    "why_filters_fail": "Server-side filtering does not protect against client-side DOM manipulation.",
+    "defensive_note": "Avoid unsafe JavaScript sinks like innerHTML and eval."
+  }
+]
